@@ -16,27 +16,32 @@ class Phrase {
      */
     addPhraseToDisplay() {
 
-        let phraseArr = [];
+        // Create an empty array ('phraseLetterArr') to push each individual letter from 'this.phrase' using a for loop.
+        let phraseLetterArr = [];
         let phraseLength = this.phrase.length;
         for(let i = 0; i < phraseLength; i++) {
-            phraseArr.push(this.phrase[i]);
-        }
+            phraseLetterArr.push(this.phrase[i]);
+        };
 
+        // Create an empty array ('htmlLetterListItem') to push a list element containing a letter or space. 
+        // Change the list element classes on the condition of 'phraseChar' being a letter or an empty string.
         let htmlLetterListItem = [];
-        phraseArr.forEach( letter => {
-            if(letter !== " ") {
-                htmlLetterListItem.push(`<li class="hide letter ${letter}">${letter}</li>`);
+        phraseLetterArr.forEach( phraseChar => {
+            if(phraseChar !== " ") {
+                htmlLetterListItem.push(`<li class="hide letter ${phraseChar}">${phraseChar}</li>`);
             } else {
                 htmlLetterListItem.push(`<li class="space"> </li>`);
             }
         });
 
-        let html = ``;
-        htmlLetterListItem.forEach( htmlList => html += `${htmlList}`);
+        // Build the html element containing each list element in 'htmlLetterListItem'.
+        let htmlListItems = ``;
+        htmlLetterListItem.forEach( htmlList => htmlListItems += `${htmlList}`);
 
-        document.querySelector("#phrase").children[0].insertAdjacentHTML('beforeend', html);
+        // Insert 'htmlListItems' into phrase ID div UL.
+        document.querySelector("#phrase").children[0].insertAdjacentHTML('beforeend', htmlListItems);
 
-        // return html;
+        // return htmlListItems;
     }
 
     /**
