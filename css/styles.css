@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
 
 /* Variables */
-
 :root {
   --color-win: #78CF82;
   --color-lose: #D94545;
@@ -17,7 +16,6 @@
 }
 
 /* main */
-
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
@@ -84,11 +82,11 @@ button {
 }
 
 /* Title */
-
 .header {
   color: #3a3f58;
+  font-size: 80px;
+  letter-spacing: 7px;
 }
-
 
 /* Phrase */
 
@@ -107,12 +105,11 @@ button {
   width: 15px;
 }
 
-
-
 .show {
   color: #fff;
   background-color: #4ac0d5;
   font-size: 20px;
+  text-transform: uppercase;
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
@@ -122,24 +119,25 @@ button {
   animation-duration: .5s;
 }
 
-
 /* Keyboard */
-
 .keyrow {
   display: flex;
   justify-content: center;
 }
 
-.chosen {
-  background: #3a3f58;
-  border-radius: 5px;
-  font-size: var(--font-size-medium);
+.key {
+  background: #445069;
   color: #FFFFFF;
 }
 
+.chosen {
+  background: #449941;
+  border-radius: 5px;
+  font-size: var(--font-size-medium);
+}
+
 .wrong {
-  background: #f7a964;
-  color: #FFFFFF;
+  background: #ce4c4c;
 }
 
 .btn__reset {
@@ -161,7 +159,6 @@ button {
 
 
 /* Overlay */
-
 #overlay {
   display: flex;
   flex-direction: column;
