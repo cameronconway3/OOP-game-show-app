@@ -24,6 +24,8 @@ startGame.addEventListener('click', () => {
     for(let i = 0; i < keys.length; i++) {
         keys[i].classList.remove('chosen');
         keys[i].classList.remove('wrong');
+        // Enable all the buttons
+        keys[i].disabled = false;
     };
 
     // Reset the heard images 
