@@ -65,19 +65,25 @@
     * @param (HTMLButtonElement) button - The clicked button element
     */
     handleInteraction(button) {
-        // If letter is in the active phrase...
-        if(this.activePhrase.checkLetter(button.textContent)) {
-            // Add class chosen to the button and call 'showMatchedLetter'.
-            // Check for a win, and if true call 'gameOver().
-            button.classList.add("chosen");
-            this.activePhrase.showMatchedLetter(button.textContent);
-            if(this.checkForWin()) {
-                this.gameOver(true);
-            }
-        // If letter is not in active phrase, add class 'wrong' to button
-        } else {
-            this.removeLife();
-            button.classList.add("wrong");
+        // Check if the button is disabled or not
+        if(!button.disabled) {
+            // If letter is in the active phrase...
+            if(this.activePhrase.checkLetter(button.textContent)) {
+                // Disables the button
+                // Add class chosen to the button and call 'showMatchedLetter'.
+                // Check for a win, and if true call 'gameOver().
+                button.disabled = true;
+                button.classList.add("chosen");
+                this.activePhrase.showMatchedLetter(button.textContent);
+                if(this.checkForWin()) {
+                    this.gameOver(true);
+                }
+            // If letter is not in active phrase, remove a life, disable the button add class 'wrong' to button
+            } else {
+                this.removeLife();
+                button.disabled = true;
+                button.classList.add("wrong");
+            };
         };
     };
 
