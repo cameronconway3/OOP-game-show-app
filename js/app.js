@@ -17,7 +17,6 @@ startGame.addEventListener('click', () => {
     game.startGame();
 });
 
-
 // Get all elements with keyrow class
 const keyrows = document.querySelectorAll(".keyrow");
 let keyElements = [];
