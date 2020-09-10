@@ -2,7 +2,6 @@
  * Project 4 - OOP Game App
  * Game.js */
 class Game {
-
     // Constructor method
     constructor() {
         this.missed = 0;
@@ -11,11 +10,25 @@ class Game {
     };
 
     /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame() {
+        // Hide the start screen overlay
+        document.querySelector("#overlay").style.display = "none";
+ 
+        // Get a random phrase and assign to 'randomPhrase'
+        const randomPhrase = this.getRandomPhrase();
+ 
+        // Create a new phrase using 'randomPhrase' and assign it to the property 'activePhrase', add this to the display.
+        this.activePhrase = new Phrase(randomPhrase.phrase);
+        this.activePhrase.addPhraseToDisplay();
+    };
+
+    /**
     * Creates phrases for use in game
     * @return {array} An array of phrases that could be used in the game
     */
     createPhrases() {
-        
         // Create an array of phrases
         let phraseArr = [
             "Life is like a box of chocolates", 
@@ -47,37 +60,25 @@ class Game {
     };
 
     /**
-    * Begins game by selecting a random phrase and displaying it to user
-    */
-    startGame() {
-        // Hide the start screen overlay
-        document.querySelector("#overlay").style.display = "none";
-
-        // Get a random phrase and assign to 'randomPhrase'
-        const randomPhrase = this.getRandomPhrase();
-
-        // Create a new phrase using 'randomPhrase' and assign it to the property 'activePhrase', add this to the display.
-        this.activePhrase = new Phrase(randomPhrase.phrase);
-        this.activePhrase.addPhraseToDisplay();
-    };
-
-
-    /**
     * Handles onscreen keyboard button clicks
     * @param (HTMLButtonElement) button - The clicked button element
     */
     handleInteraction(button) {
+        // If letter is in the active phrase...
         if(this.activePhrase.checkLetter(button.textContent)) {
+            // Add class chosen to the button and call 'showMatchedLetter'.
+            // Check for a win, and if true call 'gameOver().
             button.classList.add("chosen");
             this.activePhrase.showMatchedLetter(button.textContent);
             if(this.checkForWin()) {
                 this.gameOver(true);
             }
+        // If letter is not in active phrase, add class 'wrong' to button
         } else {
             this.removeLife();
             button.classList.add("wrong");
-        }
-    }
+        };
+    };
 
     /**
     * Checks for winning move
@@ -119,7 +120,7 @@ class Game {
             this.missed++;
         } else {
             this.gameOver(false);
-        }
+        };
     };
 
     /**
@@ -127,7 +128,6 @@ class Game {
     * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver(gameWon) {
-
         // Assign variables to the overlay element and the overlay message element and 
         const gameOutcome = document.querySelector("#game-over-message");
         const overlay = document.querySelector("#overlay");
@@ -141,11 +141,9 @@ class Game {
             gameOutcome.textContent = "You lost. Better luck next time.";
             overlay.classList.remove("start");
             overlay.classList.add("lose");
-        }
+        };
 
         // Show the start screen overlay
         document.querySelector("#overlay").style.display = "block";
     };
-
-
-}
+};
