@@ -9,12 +9,34 @@ class Phrase {
         this.phrase = phrase.toLowerCase();
     }
 
+    
 
     /**
      * Adds letter placeholders to the display when the game starts.
      */
     addPhraseToDisplay() {
 
+        let phraseArr = [];
+        let phraseLength = this.phrase.length;
+        for(let i = 0; i < phraseLength; i++) {
+            phraseArr.push(this.phrase[i]);
+        }
+
+        let htmlLetterListItem = [];
+        phraseArr.forEach( letter => {
+            if(letter !== " ") {
+                htmlLetterListItem.push(`<li class="hide letter ${letter}">${letter}</li>`);
+            } else {
+                htmlLetterListItem.push(`<li class="space"> </li>`);
+            }
+        });
+
+        let html = ``;
+        htmlLetterListItem.forEach( htmlList => html += `${htmlList}`);
+
+        document.querySelector("#phrase").children[0].insertAdjacentHTML('beforeend', html);
+
+        // return html;
     }
 
     /**
