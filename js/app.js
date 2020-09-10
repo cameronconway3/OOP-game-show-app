@@ -19,7 +19,6 @@ startGame.addEventListener('click', () => {
     overlay.classList.remove("win");
     overlay.classList.remove("lose");
     
-
     // Enable all of the onscreen keyboard buttons and update each to use the 'key' class
     const keys = document.querySelectorAll(".key");
     for(let i = 0; i < keys.length; i++) {
@@ -42,14 +41,11 @@ startGame.addEventListener('click', () => {
 });
 
 // Get all elements with keyrow class
-const keyrows = document.querySelectorAll(".keyrow");
+const keys = document.querySelectorAll(".key");
 let keyElements = [];
-// Create a nexted loop to loop over the individual letter li elements in each keyrow element.
-// Push each individual li element into empty array - 'keyElements'
-keyrows.forEach( keyrow => {
-    for (let i = 0; i < keyrow.children.length; i++) {
-        keyElements.push(keyrow.children[i]);
-    };
+// Push all buttons with class of 'key' to 'keyElements' array
+keys.forEach( key => {
+    keyElements.push(key);
 });
 
 // For each li element in 'keyElements' listen out for a click event

@@ -1,19 +1,18 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Phrase.js */
-class Phrase {
 
+ class Phrase {
     // Constructor method that initializes the 'phrase' property
     constructor(phrase) {
         // convert the 'phrase' parameter to lowercase
         this.phrase = phrase.toLowerCase();
-    }
+    };
 
     /**
      * Adds letter placeholders to the display when the game starts.
      */
     addPhraseToDisplay() {
-
         // Create an empty array ('phraseLetterArr') to push each individual letter from 'this.phrase' using a for loop.
         let phraseLetterArr = [];
         let phraseLength = this.phrase.length;
@@ -38,9 +37,7 @@ class Phrase {
 
         // Insert 'htmlListItems' into phrase ID div UL.
         document.querySelector("#phrase").children[0].insertAdjacentHTML('beforeend', htmlListItems);
-
-        // return htmlListItems;
-    }
+    };
 
     /**
     * Checks if passed letter is in phrase
@@ -66,5 +63,4 @@ class Phrase {
             numMatched[i].classList.remove("hide");
         };
     };
-
-}
+};

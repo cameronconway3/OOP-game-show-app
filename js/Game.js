@@ -1,7 +1,8 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Game.js */
-class Game {
+
+ class Game {
     // Constructor method
     constructor() {
         this.missed = 0;
