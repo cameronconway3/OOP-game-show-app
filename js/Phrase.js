@@ -9,8 +9,6 @@ class Phrase {
         this.phrase = phrase.toLowerCase();
     }
 
-    
-
     /**
      * Adds letter placeholders to the display when the game starts.
      */
@@ -45,17 +43,28 @@ class Phrase {
     }
 
     /**
-     * Checks to see if the letter selected by the player matches a letter in the phrase
-     */
-    checkLetter() {
-
-    }
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */
+    checkLetter(letter) {
+        // Remove any whitespace in the phrase, check if letter is included in this phrase, return true if so.
+        if(this.phrase.replace(/ /g, '').includes(letter)) {
+            return true;
+        } 
+        return false;
+    };
 
     /**
-     * Reveals the letter(s) on the board that matches the player's selection.
-     */
-    showMatchedLetter() {
-
-    }
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter) {
+        let numMatched = document.querySelectorAll("." + letter);
+        // Loop through all elements with class == letter, add class 'show' and remove class 'hide'
+        for(let i = 0; i < numMatched.length; i++) {
+            numMatched[i].classList.add("show");
+            numMatched[i].classList.remove("hide");
+        };
+    };
 
 }

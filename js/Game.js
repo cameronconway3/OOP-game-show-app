@@ -45,4 +45,94 @@ class Game {
         // A random phrase object is selected from the phrases property using 'randomPhraseIndex' and returned
         return this.phrases[randomPhraseIndex];
     };
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame() {
+        // Hide the start screen overlay
+        document.querySelector("#overlay").style.display = "none";
+
+        // Get a random phrase and assign to 'randomPhrase'
+        const randomPhrase = this.getRandomPhrase();
+
+        // Create a new phrase using 'randomPhrase' and assign it to the property 'activePhrase', add this to the display.
+        this.activePhrase = new Phrase(randomPhrase.phrase);
+        this.activePhrase.addPhraseToDisplay();
+    };
+
+
+    handleInteraction() {
+
+    }
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    */
+    checkForWin() {
+        // Store all hidden list elements in 'hiddenElements'
+        let hiddenElements = [];
+        // Loop through all list elements with a class of 'letter' and push to 'hiddenElements'
+        const letterTiles = document.querySelectorAll(".letter");
+        for(let i = 0; i < letterTiles.length; i++) {
+            if(letterTiles[i].classList.contains("hide")) {
+                hiddenElements.push(letterTiles[i]);
+            };
+        };
+
+        // If hiddenElements has a length of 0 then all tiles are showing, so player has won - return true;
+        if(hiddenElements.length == 0) {
+            return true;
+        };
+        return false;
+    };
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+        // Set the list elements to 'lives'
+        const lives = document.querySelectorAll(".tries");
+        // If the amount of lives is more than 0. 
+        if(lives.length > 1) {
+            // Each time the function is called carry out the following logic.
+            // Replace the image of the img element within the li element (children[0]) and remove the class 'tires' from the first element in 'lives'.
+            // Add 1 to 'this.missed'.
+            lives[0].children[0].src = "images/lostHeart.png";
+            lives[0].classList.remove("tries");
+            this.missed++;
+        } else {
+            this.gameOver(false);
+        }
+    };
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+
+        // Assign variables to the overlay element and the overlay message element and 
+        const gameOutcome = document.querySelector("#game-over-message");
+        const overlay = document.querySelector("#overlay");
+
+        // Depending on the outcome of 'gameWon' update 'gameOutcome' text content and update the classes
+        if(gameWon) {
+            gameOutcome.textContent = "You Won!";
+            overlay.classList.remove("start");
+            overlay.classList.add("win");
+        } else {
+            gameOutcome.textContent = "You lost. Better luck next time.";
+            overlay.classList.remove("start");
+            overlay.classList.add("lose");
+        }
+
+        // Show the start screen overlay
+        document.querySelector("#overlay").style.display = "block";
+    };
+
+
 }

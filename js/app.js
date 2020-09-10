@@ -2,11 +2,36 @@
  * Project 4 - OOP Game App
  * app.js */
 
-// const phrase = new Phrase('Pi is nice');
-// console.log(phrase.addPhraseToDisplay())
+// const game = new Game();
+// game.startGame();
+// console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 
 
-const game = new Game();
-const randomPhrase = game.getRandomPhrase();
-const phrase = new Phrase(randomPhrase.phrase);
-console.log(phrase.addPhraseToDisplay());
+// let game;
+
+// // Assign the Start Game button to 'startGame' variable
+const startGame = document.querySelector("#btn__reset");
+// Listen out for a click event on 'startGame'
+startGame.addEventListener('click', () => {
+    game = new Game();
+    game.startGame();
+});
+
+
+
+
+// document.querySelector("#overlay").style.display = "none";
+
+// Test checkLetter and showMatchedLetter
+// const phrase = new Phrase("hello u");
+// phrase.addPhraseToDisplay();
+// console.log(phrase.showMatchedLetter("l"));
+
+// Test removeLife
+// const game = new Game();
+// game.activePhrase.checkLetter('a');
+
+
+
+
+
